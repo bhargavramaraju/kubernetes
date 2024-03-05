@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-deplyement
+  annotations:
+    kubernetes.io/change-cause: "image updated to 1.2"
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nop
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 30%
+  template:
+    metadata:
+      name: test-pod
+      labels:
+        app: nop
+    spec:
+      containers:
+        - name: nop-container
+          image: bhargavramaraju123/sivaji:23
+          ports:
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: nop
+  ports:
+    - targetPort: 5000
+      port: 80
+      protocol: TCP
