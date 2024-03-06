@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nop-container
-          image: bhargavramaraju123/sivaji:15
+          image: bhargavramaraju123/sivaji:16
           ports:
             - containerPort: 80
               protocol: TCP
@@ -43,4 +43,4 @@ spec:
   template:
     spec:
       containers:
-        - image: bhargavramaraju123/sivaji:15
+        - image: bhargavramaraju123/sivaji:16
